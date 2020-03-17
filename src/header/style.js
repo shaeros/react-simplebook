@@ -7,6 +7,32 @@ export const HeaderWrapper = styled.div`
  border-bottom: 1px solid #f0f0f0;
 `;
 
+export const SearchWrapper = styled.div`
+ position: relative;
+ float: left;
+ &.slide-enter {
+   transition: all .2s ease-out;
+ }
+ &.slide-enter-active {
+   width: 240px;
+ }
+ &.slide-exit {
+   transition: all .2s ease-out;
+ }
+ &.slide-exit-active {
+   width: 160px;
+ }
+ .iconfont {
+   position: absolute;
+   right: 5px;
+   bottom: 5px;
+   width: 30px;
+   line-height: 30px;
+   border-radius: 15px;
+   text-align: center;
+ }
+`;
+
 export const Button = styled.div`
  float: right;
  margin-top: 9px;
@@ -89,18 +115,6 @@ export const NavSearch = styled.input.attrs({
  }
  &.focused {
    width: 240px;
- }
- &.slide-enter {
-   transition: all .2s ease-out;
- }
- &.slide-enter-active {
-   width: 240px;
- }
- &.slide-exit {
-   transition: all .2s ease-out;
- }
- &.slide-exit-active {
-   width: 160px;
  }
 `;
 

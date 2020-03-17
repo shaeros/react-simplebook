@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from 'react-redux';
 import {
     Addition, Button, SearchInfoList,
-    HeaderWrapper, Logo, Nav,
+    HeaderWrapper, Logo, Nav, SearchWrapper,
     NavItem, NavSearch, SearchInfo,
     SearchInfoTitle, SearchInfoSwitch, SearchInfoItem
 } from './style';
@@ -62,18 +62,21 @@ class Header extends Component {
                     <NavItem className='right'>
                         <i className="iconfont">&#xe636;</i>
                     </NavItem>
-                    <CSSTransition
-                        in={focused}
-                        timeout={200}
-                        classNames="slide"
-                    >
-                        <NavSearch
-                            className={focused ? 'focused' : ''}
-                            onFocus={() => handleInputFocus(list)}
-                            onBlur={handleInputBlur}
+                    <SearchWrapper>
+                        <CSSTransition
+                            in={focused}
+                            timeout={200}
+                            classNames="slide"
                         >
-                        </NavSearch>
-                    </CSSTransition>
+                            <NavSearch
+                                className={focused ? 'focused' : ''}
+                                onFocus={() => handleInputFocus(list)}
+                                onBlur={handleInputBlur}
+                            >
+                            </NavSearch>
+                            <i className="iconfont">&#xe62b;</i>
+                        </CSSTransition>
+                    </SearchWrapper>
                     {this.getListArea()}
                 </Nav>
                 <Addition>
