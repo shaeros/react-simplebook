@@ -1,9 +1,12 @@
-import styled from 'styled-components';
+﻿import styled from 'styled-components';
 import logoPic from '../static/logo.png';
 
 export const HeaderWrapper = styled.div`
  position: relative;
  height:56px;
+ max-width: 1440px;
+ min-width: 1200px;
+ margin: 0 auto;
  border-bottom: 1px solid #f0f0f0;
 `;
 
@@ -83,7 +86,7 @@ export const SearchInfoSwitch = styled.span`
 
 export const SearchInfo = styled.div`
  position: absolute;
- left: 300px;
+ left: 0;
  top: 56px;
  width: 240px;
  padding: 0 20px;

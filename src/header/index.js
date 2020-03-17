@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+﻿import React, {Component} from "react";
 import {connect} from 'react-redux';
 import {
     Addition, Button, SearchInfoList,
@@ -83,8 +83,8 @@ class Header extends Component {
                             </NavSearch>
                         </CSSTransition>
                         <i className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe62b;</i>
+                        {this.getListArea()}
                     </SearchWrapper>
-                    {this.getListArea()}
                 </Nav>
                 <Addition>
                     <Button className='writing'>
