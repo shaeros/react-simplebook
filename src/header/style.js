@@ -10,26 +10,18 @@ export const HeaderWrapper = styled.div`
 export const SearchWrapper = styled.div`
  position: relative;
  float: left;
- &.slide-enter {
-   transition: all .2s ease-out;
- }
- &.slide-enter-active {
-   width: 240px;
- }
- &.slide-exit {
-   transition: all .2s ease-out;
- }
- &.slide-exit-active {
-   width: 160px;
- }
- .iconfont {
+ .zoom {
    position: absolute;
    right: 5px;
-   bottom: 5px;
+   bottom: 4px;
    width: 30px;
    line-height: 30px;
    border-radius: 15px;
    text-align: center;
+   &.focused {
+     background: #777;
+     color: #fff
+   }
  }
 `;
 
@@ -78,6 +70,15 @@ export const SearchInfoTitle = styled.div`
 export const SearchInfoSwitch = styled.span`
  float: right;
  font-size: 13px;
+ cursor: pointer;
+ .spin {
+   display: block;
+   float: left;
+   font-size: 12px;
+   margin-right: 2px;
+   transition: all .1s ease-in;
+   transform-origin: center center;
+ }
 `;
 
 export const SearchInfo = styled.div`
@@ -115,6 +116,18 @@ export const NavSearch = styled.input.attrs({
  }
  &.focused {
    width: 240px;
+ }
+ &.slide-enter {
+   transition: all .5s ease-out;
+ }
+ &.slide-enter-active {
+   width: 240px;
+ }
+ &.slide-exit {
+   transition: all .5s ease-out;
+ }
+ &.slide-exit-active {
+   width: 160px;
  }
 `;
 

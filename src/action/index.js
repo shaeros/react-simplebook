@@ -5,7 +5,7 @@ import {fromJS} from "immutable";
 const changeList = (data) => ({
     type: constants.SEARCH_LIST,
     data: fromJS(data),
-    totalPage: Math.ceil(data.length / 5)
+    totalPage: Math.ceil(data.length / 10)
 });
 
 export const handleInputFocus = () => ({

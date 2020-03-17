@@ -20,7 +20,7 @@ import {
 class Header extends Component {
 
     getListArea() {
-        const {focused, list, page, totalPage, handleMouseEnter, handleMouseLeave, handleChangePage} = this.props;
+        const {focused, list, page, totalPage, mouseIn, handleMouseEnter, handleMouseLeave, handleChangePage} = this.props;
         const newList = list.toJS();
         const pageList = [];
         if (newList.length > 0) {
@@ -30,7 +30,7 @@ class Header extends Component {
                 )
             }
         }
-        if (focused) {
+        if (focused || mouseIn) {
             return (
                 <SearchInfo
                     onMouseEnter={handleMouseEnter}
@@ -38,7 +38,12 @@ class Header extends Component {
                 >
                     <SearchInfoTitle>
                         热门搜索
-                        <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage)}>换一换</SearchInfoSwitch>
+                        <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage, this.spinIcon)}>
+                            换一换
+                            <i ref={(icon) => {
+                                this.spinIcon = icon
+                            }} className='iconfont spin'>&#xe851;</i>
+                        </SearchInfoSwitch>
                     </SearchInfoTitle>
                     <SearchInfoList>
                         {pageList}
@@ -58,14 +63,16 @@ class Header extends Component {
                 <Nav>
                     <NavItem className='left'>首页</NavItem>
                     <NavItem className='left'>下载App</NavItem>
-                    <NavItem className='right'>登录</NavItem>
-                    <NavItem className='right'>
-                        <i className="iconfont">&#xe636;</i>
-                    </NavItem>
+                    <div style={{marginRight:'50px'}}>
+                        <NavItem className='right'>登录</NavItem>
+                        <NavItem className='right'>
+                            <i className="iconfont">&#xe636;</i>
+                        </NavItem>
+                    </div>
                     <SearchWrapper>
                         <CSSTransition
                             in={focused}
-                            timeout={200}
+                            timeout={500}
                             classNames="slide"
                         >
                             <NavSearch
@@ -74,8 +81,8 @@ class Header extends Component {
                                 onBlur={handleInputBlur}
                             >
                             </NavSearch>
-                            <i className="iconfont">&#xe62b;</i>
                         </CSSTransition>
+                        <i className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe62b;</i>
                     </SearchWrapper>
                     {this.getListArea()}
                 </Nav>
@@ -96,7 +103,7 @@ const mapStateToProps = (state) => {
         list: state.get('header').get('list'),
         page: state.get('header').get('page'),
         mouseIn: state.get('header').get('mouseIn'),
-        totalPage: state.get('header').get('page')
+        totalPage: state.get('header').get('totalPage')
     }
 };
 
@@ -115,9 +122,14 @@ const mapDispatchToProps = (dispatch) => {
         handleMouseLeave() {
             dispatch(handleMouseLeave());
         },
-        handleChangePage(page, totalPage) {
+        handleChangePage(page, totalPage, spin) {
+            spin.style.transform = 'rotate(360deg)';
+            console.log(totalPage, page);
             if (page < totalPage) {
                 dispatch(handleChangePage(page + 1));
+            } else if (page === totalPage) {
+                page = 1;
+                dispatch(handleChangePage(page));
             } else {
                 dispatch(handleChangePage(page));
             }
